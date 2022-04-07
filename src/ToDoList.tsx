@@ -16,10 +16,12 @@ export type PropsType = {
 }
 
 export const ToDoList: React.FC<PropsType> = (props) => {
-
+    // Добавляем локальный стейт, для наблюдения ввода в поле input
     const [newTaskTitle, setNewTaskTitle] = React.useState<string>('');
 
+    // Прорисовка элементов списка методом map из глобального стейта(в App)
     const tasksList = props.tasks.map(t => {
+        // Кнопка для удаления элемента списка
         const onClickRemoveTask = () => {
             props.removeTasks(t.id)
         }
@@ -32,21 +34,32 @@ export const ToDoList: React.FC<PropsType> = (props) => {
         )
     });
 
+    // Каждое введённое значение в поле input добавляем в стейт
     const onNewTitleChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setNewTaskTitle(e.currentTarget.value)
     }
+
+    // При нажатии 'enter' добавляем новый элемент в начало списка и очищаем локальный стейт
     const onChangeHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.charCode === 13) {
             props.addTask(newTaskTitle)
             setNewTaskTitle('')
         }
     }
+
+    // Функция добавления нового элемента в начало списка
     const addTask = () => {
         props.addTask(newTaskTitle)
         setNewTaskTitle('')
     }
+
+    // Функция изменения значения фильтра (отправка в глобальный стейт значения 'all')
     const onAllClickHandler = () => props.changeFilter('all')
+
+    // Функция изменения значения фильтра (отправка в глобальный стейт значения 'active')
     const onActiveClickHandler = () => props.changeFilter('active')
+
+    // Функция изменения значения фильтра (отправка в глобальный стейт значения 'completed')
     const onCompletedClickHandler = () => props.changeFilter('completed')
 
     return (
