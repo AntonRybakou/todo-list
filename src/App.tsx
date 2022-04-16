@@ -7,7 +7,7 @@ export type FilterValuesType = "all" | "completed" | "active";
 
 function App() {
 
-    // Основной глобальный стейт (данные с начальным списком элементов)
+    // Global state (data with an initial list of elements)
     const [tasks, setTasks] = useState<Array<TaskType>>([
         {id: v1(), title: "HTML&CSS", isDone: true},
         {id: v1(), title: "JS", isDone: true},
@@ -16,32 +16,35 @@ function App() {
         {id: v1(), title: "GraphQL", isDone: false},
         {id: v1(), title: "RestAPI", isDone: false},
     ]);
-
-    // Функция установки значения фильтра в глобальный стейт
+    // Function for setting the filter value in the global state
     function removeTasks(id: string) {
         const filteredTasks = tasks.filter(t => t.id !== id)
         setTasks(filteredTasks);
     }
-
-    // Функция добавления нового элемента списка в начало массива данных
+    // Function for adding a new list item to the beginning of a data array
     function addTask(title: string) {
         let newTask: TaskType = {id: v1(), title: title, isDone: false};
         let newTasks = [newTask, ...tasks];
         setTasks(newTasks);
         console.log(newTasks);
     }
-
-    // Глобальный стейт для отслеживания фильтра
+    // Function to change status of the list item ("active" or "completed")
+    function changeStatus(taskID: string, isDone: boolean) {
+        let task = tasks.find ( t => t.id === taskID);
+        if (task) {
+            task.isDone = isDone;
+        }
+        setTasks([...tasks])
+    }
+    // Global state for filter
     const [filter, setFilter] = useState<FilterValuesType>('all');
-
-    // Функция устанавливает значение фильтра
+    // The function sets the filter value
     function  changeFilter(value: FilterValuesType) {
         setFilter(value);
     }
-
-    // Устанавливаем изначальный фильтр (значение)
+    // Set the initial filter (value)
     let tasksForToDoList;
-    // Непосредственно фильтруем изначальный массив данных
+    // Filter the original state (depending on the filter value)
     switch (filter) {
         case "completed":
             tasksForToDoList = tasks.filter(t => t.isDone)
@@ -60,6 +63,8 @@ function App() {
                       removeTasks={removeTasks}
                       changeFilter={changeFilter}
                       addTask={addTask}
+                      changeTaskStatus={changeStatus}
+                      filter={filter}
             />
         </div>
     );
