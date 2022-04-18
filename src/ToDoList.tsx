@@ -17,16 +17,17 @@ export type PropsType = {
 }
 
 export const ToDoList: React.FC<PropsType> = (props) => {
-    // Добавляем локальный стейт, для наблюдения ввода в поле input
+    // Local state for input values
     const [newTaskTitle, setNewTaskTitle] = React.useState<string>('');
+    // Local state for error value
     const [error, setError] = React.useState<string | null>(null);
-
-    // Прорисовка элементов списка методом map из глобального стейта(в App)
+    // Render elements (map) from global state data
     const tasksList = props.tasks.map(t => {
-        // Кнопка для удаления элемента списка
+        // Remove element from list
         const onClickRemoveTask = () => {
             props.removeTasks(t.id)
         };
+        // Change "check" status in the list
         const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
             props.changeTaskStatus(t.id, e.currentTarget.checked)
         };
@@ -42,17 +43,15 @@ export const ToDoList: React.FC<PropsType> = (props) => {
             </li>
         )
     });
-
-    // Каждое введённое значение в поле input добавляем в стейт
+    // Add each input value in local state
     const onNewTitleChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setNewTaskTitle(e.currentTarget.value);
         setError(null);
     }
-
-    // При нажатии 'enter' добавляем новый элемент в начало списка и очищаем локальный стейт
+    // On keyPress 'enter' add new element in the list (global state), clear local input state
     const onChangeHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
         setError(null);
-        if (e.charCode === 13) {
+        if (e.key === 'Enter') {
             if (newTaskTitle.trim() === '') {
                 setError('Title is required');
                 setNewTaskTitle('');
@@ -62,8 +61,7 @@ export const ToDoList: React.FC<PropsType> = (props) => {
             setNewTaskTitle('')
         }
     }
-
-    // Функция добавления нового элемента в начало списка
+    // On press button - add new element in the list (global state)
     const addTask = () => {
         if (newTaskTitle.trim() === '') {
             setError('Title is required');
@@ -74,7 +72,6 @@ export const ToDoList: React.FC<PropsType> = (props) => {
         setNewTaskTitle('');
         setError(null);
     }
-
     // Functions to change the filter value
     const onAllClickHandler = () => props.changeFilter('all')
     const onActiveClickHandler = () => props.changeFilter('active')
@@ -86,7 +83,7 @@ export const ToDoList: React.FC<PropsType> = (props) => {
             <div>
                 <input value={newTaskTitle}
                        onChange={onNewTitleChangeHandler}
-                       onKeyPress={onChangeHandler}
+                       onKeyDown={onChangeHandler}
                        className={error ? 'error' : ''}
                 />
                 <button onClick={addTask}>+</button>
