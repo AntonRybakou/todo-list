@@ -7,13 +7,15 @@ export type TaskType = {
     isDone: boolean,
 }
 export type PropsType = {
+    todolistID: string,
     title: string,
     tasks: Array<TaskType>,
-    removeTasks: (id: string) => void,
-    changeFilter: (value: FilterValuesType) => void,
-    addTask: (title: string) => void,
-    changeTaskStatus: (taskID: string, isDone: boolean) => void,
+    removeTasks: (todolistID:string, taskID: string) => void,
+    changeFilter: (todolistID: string, value: FilterValuesType) => void,
+    addTask: (todolistID:string, title: string) => void,
+    changeTaskStatus: (todolistID:string, taskID: string, isDone: boolean) => void,
     filter: FilterValuesType,
+    removeTodolist: (todolistID:string) => void
 }
 
 export const ToDoList: React.FC<PropsType> = (props) => {
@@ -25,15 +27,15 @@ export const ToDoList: React.FC<PropsType> = (props) => {
     const tasksList = props.tasks.map(t => {
         // Remove element from list
         const onClickRemoveTask = () => {
-            props.removeTasks(t.id)
+            props.removeTasks(props.todolistID, t.id)
         };
         // Change "check" status in the list
         const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-            props.changeTaskStatus(t.id, e.currentTarget.checked)
+            props.changeTaskStatus(props.todolistID, t.id, e.currentTarget.checked)
         };
         return (
             <li key={t.id}
-            className={t.isDone ? 'is-done' : ''}>
+                className={t.isDone ? 'is-done' : ''}>
                 <input type="checkbox"
                        checked={t.isDone}
                        onChange={onChangeHandler}
@@ -57,7 +59,7 @@ export const ToDoList: React.FC<PropsType> = (props) => {
                 setNewTaskTitle('');
                 return;
             }
-            props.addTask(newTaskTitle)
+            props.addTask(props.todolistID, newTaskTitle)
             setNewTaskTitle('')
         }
     }
@@ -68,18 +70,25 @@ export const ToDoList: React.FC<PropsType> = (props) => {
             setNewTaskTitle('');
             return;
         }
-        props.addTask(newTaskTitle.trim());
+        props.addTask(props.todolistID, newTaskTitle.trim());
         setNewTaskTitle('');
         setError(null);
     }
     // Functions to change the filter value
-    const onAllClickHandler = () => props.changeFilter('all')
-    const onActiveClickHandler = () => props.changeFilter('active')
-    const onCompletedClickHandler = () => props.changeFilter('completed')
+    const onAllClickHandler = () => props.changeFilter(props.todolistID, 'all')
+    const onActiveClickHandler = () => props.changeFilter(props.todolistID, 'active')
+    const onCompletedClickHandler = () => props.changeFilter(props.todolistID, 'completed')
+    // Callback FN to remove todolist
+    const removeTodolistHandler = () => {
+        props.removeTodolist(props.todolistID)
+    }
 
     return (
         <div>
-            <h3>{props.title}</h3>
+            <h3>
+                {props.title}
+                <button onClick={removeTodolistHandler}>-</button>
+            </h3>
             <div>
                 <input value={newTaskTitle}
                        onChange={onNewTitleChangeHandler}
