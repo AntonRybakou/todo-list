@@ -36,15 +36,18 @@ function App() {
             {id: v1(), title: "Bananas", isDone: false},
         ]
     });
-    // Function for setting the filter value in the global state
+
+    // Function change filter for todolist
     function removeTasks(todolistID: string, taskID: string) {
         setTasks({...tasks, [todolistID]: tasks[todolistID].filter(el => el.id !== taskID)})
     }
-    // Function for adding a new list item to the beginning of a data array
+
+    // Function for adding a new list item to the beginning of the todolist
     function addTask(todolistID: string, title: string) {
         let newTask: TaskType = {id: v1(), title: title, isDone: false};
         setTasks({...tasks, [todolistID]: [newTask, ...tasks[todolistID]]})
     }
+
     // Function to change status of the list item ("active" or "completed")
     function changeStatus(todolistID: string, taskID: string, isDone: boolean) {
         setTasks({
@@ -52,13 +55,15 @@ function App() {
             [todolistID]: tasks[todolistID].map(el => el.id === taskID ? {...el, isDone: isDone} : el)
         });
     }
+
     // The function sets the filter value
     function changeFilter(todolistID: string, value: FilterValuesType) {
         setTodolists(todolists.map(el => el.id === todolistID ? {...el, filter: value} : el))
     }
+
     // Function to remove todolist
-    function removeTodolist(todolistID:string) {
-        setTodolists(todolists.filter( el => el.id !== todolistID ));
+    function removeTodolist(todolistID: string) {
+        setTodolists(todolists.filter(el => el.id !== todolistID));
         delete tasks[todolistID];
         console.log(tasks)
     }

@@ -10,12 +10,12 @@ export type PropsType = {
     todolistID: string,
     title: string,
     tasks: Array<TaskType>,
-    removeTasks: (todolistID:string, taskID: string) => void,
+    removeTasks: (todolistID: string, taskID: string) => void,
     changeFilter: (todolistID: string, value: FilterValuesType) => void,
-    addTask: (todolistID:string, title: string) => void,
-    changeTaskStatus: (todolistID:string, taskID: string, isDone: boolean) => void,
+    addTask: (todolistID: string, title: string) => void,
+    changeTaskStatus: (todolistID: string, taskID: string, isDone: boolean) => void,
     filter: FilterValuesType,
-    removeTodolist: (todolistID:string) => void
+    removeTodolist: (todolistID: string) => void
 }
 
 export const ToDoList: React.FC<PropsType> = (props) => {
