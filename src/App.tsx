@@ -10,6 +10,9 @@ type TodolistsType = {
     title: string,
     filter: FilterValuesType,
 }
+type TasksStateType = {
+    [key: string]: Array<TaskType>
+}
 
 function App() {
 
@@ -21,7 +24,7 @@ function App() {
         {id: todolistID2, title: 'What to buy', filter: 'all'},
     ])
     // Global state (data with an initial list of elements)
-    let [tasks, setTasks] = useState({
+    let [tasks, setTasks] = useState<TasksStateType>({
         [todolistID1]: [
             {id: v1(), title: "HTML&CSS", isDone: true},
             {id: v1(), title: "JS", isDone: true},
@@ -70,7 +73,7 @@ function App() {
         }
     }
 
-    function changeFilter(value: FilterValuesType, todolistId: string) {
+    function changeFilter(todolistId: string, value: FilterValuesType) {
         let todolist = todolists.find(tl => tl.id === todolistId);
         if (todolist) {
             todolist.filter = value;
