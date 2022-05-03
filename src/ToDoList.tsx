@@ -24,31 +24,12 @@ export type PropsType = {
 
 export const ToDoList: React.FC<PropsType> = (props) => {
 
-    const tasksList = props.tasks.map(t => {
-        props.tasks.map(t => {
-            const onClickHandler = () => props.removeTask(t.id, props.id)
-            const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-                let newIsDoneValue = e.currentTarget.checked;
-                props.changeTaskStatus(t.id, newIsDoneValue, props.id);
-            }
-
-            return <li key={t.id} className={t.isDone ? "is-done" : ""}>
-                <input type="checkbox" onChange={onChangeHandler} checked={t.isDone}/>
-                <EditableSpan title={t.title} callBack={ (newTitle) => editTaskHandler(t.id, newTitle) }/>
-                <button onClick={onClickHandler}>x</button>
-            </li>
-        })
-    });
-
-    const removeTodolist = () => props.removeTodolist(props.id)
+    // Callback FN to remove todolist
+    const removeTodolistHandler = () => props.removeTodolist(props.id)
     // Functions to change the filter value
     const onAllClickHandler = () => props.changeFilter(props.id, 'all')
     const onActiveClickHandler = () => props.changeFilter(props.id, 'active')
     const onCompletedClickHandler = () => props.changeFilter(props.id, 'completed')
-    // Callback FN to remove todolist
-    const removeTodolistHandler = () => {
-        props.removeTodolist(props.id)
-    }
 
     const addTaskHandler = (newTitle: string) => {
         props.addTask(newTitle, props.id)
@@ -64,11 +45,25 @@ export const ToDoList: React.FC<PropsType> = (props) => {
         <div>
             <h3>
                 <EditableSpan title={props.title} callBack={editTodolistHandler}/>
-                <button onClick={removeTodolist}>x</button>
+                <button onClick={removeTodolistHandler}>x</button>
             </h3>
             <Fullinput callBack={addTaskHandler}/>
             <ul>
-                {tasksList}
+                {
+                    props.tasks.map(t => {
+                            const onClickHandler = () => props.removeTask(t.id, props.id)
+                            const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+                                let newIsDoneValue = e.currentTarget.checked;
+                                props.changeTaskStatus(t.id, newIsDoneValue, props.id);
+                            }
+
+                            return <li key={t.id} className={t.isDone ? "is-done" : ""}>
+                                <input type="checkbox" onChange={onChangeHandler} checked={t.isDone}/>
+                                <EditableSpan title={t.title} callBack={(newTitle) => editTaskHandler(t.id, newTitle)}/>
+                                <button onClick={onClickHandler}>x</button>
+                            </li>
+                        }
+                    )}
             </ul>
             <div>
                 <button className={(props.filter === 'all') ? 'active-filter' : ''}
