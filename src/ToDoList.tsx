@@ -26,17 +26,19 @@ export const ToDoList: React.FC<PropsType> = (props) => {
 
     // Callback FN to remove todolist
     const removeTodolistHandler = () => props.removeTodolist(props.id)
-    // Functions to change the filter value
+    // Functions to change the filter values:
     const onAllClickHandler = () => props.changeFilter(props.id, 'all')
     const onActiveClickHandler = () => props.changeFilter(props.id, 'active')
     const onCompletedClickHandler = () => props.changeFilter(props.id, 'completed')
-
+    // CallBack Function to add new task using title from the input
     const addTaskHandler = (newTitle: string) => {
         props.addTask(newTitle, props.id)
     }
+    // CallBack Function to edit a title of TODOlist
     const editTodolistHandler = (newTitle: string) => {
         props.editTodolist(props.id, newTitle)
     }
+    // CallBack Function to edit a task title
     const editTaskHandler = (tID: string, newTitle: string) => {
         props.editTask(props.id, tID, newTitle);
     }
