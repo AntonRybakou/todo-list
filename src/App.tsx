@@ -40,16 +40,13 @@ function App() {
             {id: v1(), title: "Bananas", isDone: false},
         ]
     });
-
+    // Function to remove task from initial state by ID
     function removeTask(id: string, todolistId: string) {
-        //достанем нужный массив по todolistId:
         let todolistTasks = tasks[todolistId];
-        // перезапишем в этом объекте массив для нужного тудулиста отфилтрованным массивом:
         tasks[todolistId] = todolistTasks.filter(t => t.id != id);
-        // засетаем в стейт копию объекта, чтобы React отреагировал перерисовкой
         setTasks({...tasks});
     }
-
+    // Function to add task
     function addTask(title: string, todolistId: string) {
         let task = {id: v1(), title: title, isDone: false};
         //достанем нужный массив по todolistId:
@@ -59,7 +56,7 @@ function App() {
         // засетаем в стейт копию объекта, чтобы React отреагировал перерисовкой
         setTasks({...tasks});
     }
-
+    // Function to change status if the task
     function changeStatus(id: string, isDone: boolean, todolistId: string) {
         //достанем нужный массив по todolistId:
         let todolistTasks = tasks[todolistId];
@@ -72,7 +69,7 @@ function App() {
             setTasks({...tasks});
         }
     }
-
+    // Function to change filter
     function changeFilter(todolistId: string, value: FilterValuesType) {
         let todolist = todolists.find(tl => tl.id === todolistId);
         if (todolist) {
@@ -80,24 +77,24 @@ function App() {
             setTodolists([...todolists])
         }
     }
-
+    // Function to remove TODOlist
     function removeTodolist(id: string) {
         setTodolists(todolists.filter(tl => tl.id != id));
         delete tasks[id];
         setTasks({...tasks});
     }
-
+    // Function to add TODOlist
     function addTodolist(newTitle: string) {
         let newId = v1();
         let newTodolist: TodolistsType = {id: newId, title: newTitle, filter: "all"};
         setTodolists([newTodolist, ...todolists]);
         setTasks({...tasks, [newId]: []})
     }
-
+    // Function to edit TODOlist title
     function editTodolist(todolistId: string, newTitle: string) {
         setTodolists(todolists.map(el => el.id === todolistId ? {...el, title: newTitle} : el))
     }
-
+    // Function to edit task title in TODOlist
     function editTask(todolistId: string, taskID: string, newTitle: string) {
         setTasks({...tasks, [todolistId]:tasks[todolistId].map(el => el.id === taskID ? {...el, title: newTitle} : el)});
     }
