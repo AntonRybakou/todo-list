@@ -15,15 +15,15 @@ type TasksStateType = {
 }
 
 function App() {
-
+    // v1() function to make ID for the first two TODOlist
     let todolistID1 = v1();
     let todolistID2 = v1();
-    // Global state (data with an initial list of todolists)
+    // Global state (data with an initial list of TODOlist)
     let [todolists, setTodolists] = useState<Array<TodolistsType>>([
         {id: todolistID1, title: 'What to learn', filter: 'all'},
         {id: todolistID2, title: 'What to buy', filter: 'all'},
     ])
-    // Global state (data with an initial list of elements)
+    // Global state (data with an initial list of elements in TODOlist)
     let [tasks, setTasks] = useState<TasksStateType>({
         [todolistID1]: [
             {id: v1(), title: "HTML&CSS", isDone: true},
