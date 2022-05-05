@@ -2,9 +2,6 @@ import React from 'react';
 import {FilterValuesType} from "./App";
 import {EditableSpan} from "./components/EditableSpan";
 import {Fullinput} from "./components/Fullinput";
-import {IconButton} from "@mui/material";
-import DeleteIcon from '@mui/icons-material/Delete';
-
 
 export type TaskType = {
     id: string,
@@ -65,10 +62,7 @@ export const ToDoList: React.FC<PropsType> = (props) => {
                             return <li key={t.id} className={t.isDone ? "is-done" : ""}>
                                 <input type="checkbox" onChange={onChangeHandler} checked={t.isDone}/>
                                 <EditableSpan title={t.title} callBack={(newTitle) => editTaskHandler(t.id, newTitle)}/>
-                                {/*<button onClick={onClickHandler}>x</button>*/}
-                                <IconButton onClick={onClickHandler} aria-label="delete">
-                                    <DeleteIcon />
-                                </IconButton>
+                                <button onClick={onClickHandler}>x</button>
                             </li>
                         }
                     )}
