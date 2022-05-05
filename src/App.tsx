@@ -43,7 +43,7 @@ function App() {
     // Function to remove task from initial state by ID
     function removeTask(id: string, todolistId: string) {
         let todolistTasks = tasks[todolistId];
-        tasks[todolistId] = todolistTasks.filter(t => t.id != id);
+        tasks[todolistId] = todolistTasks.filter(t => t.id !== id);
         setTasks({...tasks});
     }
     // Function to add task
@@ -79,7 +79,7 @@ function App() {
     }
     // Function to remove TODOlist
     function removeTodolist(id: string) {
-        setTodolists(todolists.filter(tl => tl.id != id));
+        setTodolists(todolists.filter(tl => tl.id !== id));
         delete tasks[id];
         setTasks({...tasks});
     }
