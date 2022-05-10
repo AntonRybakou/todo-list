@@ -16,7 +16,7 @@
 }
 
 .active-filter {
-  background-color: aquamarine;
+  padding: 10px;
 }
 
 .is-done {

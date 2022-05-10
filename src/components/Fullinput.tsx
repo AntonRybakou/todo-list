@@ -1,4 +1,5 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import {Button} from "@mui/material";
 
 type FullinputPropsType = {
     callBack: (newTitle: string) => void,
@@ -25,7 +26,7 @@ export const Fullinput: React.FC<FullinputPropsType> = (props) => {
 
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         setError(null);
-        if (e.charCode === 13) {
+        if (e.key === 'Enter') {
             addTask();
         }
     }
@@ -36,8 +37,20 @@ export const Fullinput: React.FC<FullinputPropsType> = (props) => {
                    onChange={onChangeHandler}
                    onKeyDown={onKeyPressHandler}
                    className={error ? "error" : ""}
+                   placeholder="text..."
             />
-            <button onClick={addTask}>+</button>
+            <Button onClick={addTask}
+                    variant="contained"
+                    size="small"
+                    style={{
+                        maxWidth: '25px',
+                        maxHeight: '25px',
+                        minWidth: '25px',
+                        minHeight: '25px'
+                    }}
+            >
+                +
+            </Button>
             {error && <div className="error-message">{error}</div>}
         </div>
     );
