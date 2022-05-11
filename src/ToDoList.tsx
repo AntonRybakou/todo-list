@@ -50,18 +50,9 @@ export const ToDoList: React.FC<PropsType> = (props) => {
         <div>
             <h3>
                 <EditableSpan title={props.title} callBack={editTodolistHandler}/>
-                <Button onClick={removeTodolistHandler}
-                        variant="contained"
-                        size="small"
-                        style={{
-                            maxWidth: '25px',
-                            maxHeight: '25px',
-                            minWidth: '25px',
-                            minHeight: '25px'
-                        }}
-                >
-                    -
-                </Button>
+                <IconButton aria-label="delete" size="small">
+                    <DeleteIcon onClick={removeTodolistHandler} fontSize="inherit"/>
+                </IconButton>
             </h3>
             <Fullinput callBack={addTaskHandler}/>
             <ul>
@@ -77,7 +68,7 @@ export const ToDoList: React.FC<PropsType> = (props) => {
                                 <input type="checkbox" onChange={onChangeHandler} checked={t.isDone}/>
                                 <EditableSpan title={t.title} callBack={(newTitle) => editTaskHandler(t.id, newTitle)}/>
                                 <IconButton aria-label="delete" size="small">
-                                    <DeleteIcon onClick={onClickHandler} fontSize="inherit" />
+                                    <DeleteIcon onClick={onClickHandler} fontSize="inherit"/>
                                 </IconButton>
                             </li>
                         }
@@ -99,11 +90,6 @@ export const ToDoList: React.FC<PropsType> = (props) => {
                         onClick={onCompletedClickHandler}>
                     Completed
                 </Button>
-
-
-                {/*<button className={(props.filter === 'all') ? 'active-filter' : ''} onClick={onAllClickHandler}>All</button>*/}
-                {/*<button className={(props.filter === 'active') ? 'active-filter' : ''} onClick={onActiveClickHandler}>Active</button>*/}
-                {/*<button className={(props.filter === 'completed') ? 'active-filter' : ''} onClick={onCompletedClickHandler}>Completed</button>*/}
             </div>
         </div>
     );

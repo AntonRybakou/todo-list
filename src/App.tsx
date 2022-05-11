@@ -96,7 +96,10 @@ function App() {
     }
     // Function to edit task title in TODOlist
     function editTask(todolistId: string, taskID: string, newTitle: string) {
-        setTasks({...tasks, [todolistId]:tasks[todolistId].map(el => el.id === taskID ? {...el, title: newTitle} : el)});
+        setTasks({
+            ...tasks,
+            [todolistId]: tasks[todolistId].map(el => el.id === taskID ? {...el, title: newTitle} : el)
+        });
     }
 
     return (
