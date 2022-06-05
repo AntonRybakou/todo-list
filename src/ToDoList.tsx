@@ -67,8 +67,8 @@ export const ToDoList: React.FC<PropsType> = (props) => {
                             return <li key={t.id} className={t.isDone ? "is-done" : ""}>
                                 <input type="checkbox" onChange={onChangeHandler} checked={t.isDone}/>
                                 <EditableSpan title={t.title} callBack={(newTitle) => editTaskHandler(t.id, newTitle)}/>
-                                <IconButton aria-label="delete" size="small">
-                                    <DeleteIcon onClick={onClickHandler} fontSize="inherit"/>
+                                <IconButton aria-label="delete" size="small" onClick={onClickHandler}>
+                                    <DeleteIcon fontSize="inherit"/>
                                 </IconButton>
                             </li>
                         }
