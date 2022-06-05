@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import './App.css';
 import {TaskType, ToDoList} from "./ToDoList";
+import {FullInput} from "./components/FullInput";
 import {v1} from "uuid";
-import {Fullinput} from "./components/Fullinput";
 import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@mui/material";
 import {Menu} from "@mui/icons-material";
 
@@ -18,15 +18,15 @@ type TasksStateType = {
 }
 
 function App() {
-    // v1() function to make ID for the first two TODOlist
+    // v1() function to make ID for the first two ToDoList
     let todolistID1 = v1();
     let todolistID2 = v1();
-    // Global state (data with an initial list of TODOlist)
+    // Global state (data with an initial list of ToDoList)
     let [todolists, setTodolists] = useState<Array<TodolistType>>([
         {id: todolistID1, title: 'What to learn', filter: 'all'},
         {id: todolistID2, title: 'What to buy', filter: 'all'},
     ])
-    // Global state (data with an initial list of elements in TODOlist)
+    // Global state (data with an initial list of elements in ToDoList)
     let [tasks, setTasks] = useState<TasksStateType>({
         [todolistID1]: [
             {id: v1(), title: "HTML&CSS", isDone: true},
@@ -78,14 +78,14 @@ function App() {
         }
     }
 
-    // Function to remove TODOlist
+    // Function to remove ToDoList
     function removeTodolist(id: string) {
         setTodolists(todolists.filter(tl => tl.id !== id));
         delete tasks[id];
         setTasks({...tasks});
     }
 
-    // Function to add TODOlist
+    // Function to add ToDoList
     function addTodolist(newTitle: string) {
         let newId = v1();
         let newTodolist: TodolistType = {id: newId, title: newTitle, filter: "all"};
@@ -93,12 +93,12 @@ function App() {
         setTasks({...tasks, [newId]: []})
     }
 
-    // Function to edit TODOlist title
+    // Function to edit ToDoList title
     function editTodolist(todolistId: string, newTitle: string) {
         setTodolists(todolists.map(el => el.id === todolistId ? {...el, title: newTitle} : el))
     }
 
-    // Function to edit task title in TODOlist
+    // Function to edit task title in ToDoList
     function editTask(todolistId: string, taskID: string, newTitle: string) {
         setTasks({
             ...tasks,
@@ -122,11 +122,9 @@ function App() {
             </AppBar>
             <Container fixed>
                 <Grid container style={{padding: "20px"}}>
-                    <Fullinput callBack={addTodolist}/>
+                    <FullInput callBack={addTodolist}/>
                 </Grid>
                 <Grid container spacing={3}>
-
-                    {/*<Fullinput callBack={addTodolist}/>*/}
 
                     {todolists.map((el) => {
                         let tasksForToDoList;
