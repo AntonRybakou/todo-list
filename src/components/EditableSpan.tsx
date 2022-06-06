@@ -15,6 +15,12 @@ export const EditableSpan: React.FC<EditableSpanPropsType> = (props) => {
         setEdit(!edit);
         props.callBack(newTitle)
     }
+    const onKeyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            setEdit(!edit);
+            props.callBack(newTitle)
+        }
+    }
 
     return (
         edit
@@ -22,6 +28,7 @@ export const EditableSpan: React.FC<EditableSpanPropsType> = (props) => {
                 value={newTitle}
                 onChange={onChangeHandler}
                 onBlur={onDoubleClickHandler}
+                onKeyDown={onKeyDownHandler}
                 autoFocus/>
             : <span onDoubleClick={onDoubleClickHandler}>{props.title}</span>
 
