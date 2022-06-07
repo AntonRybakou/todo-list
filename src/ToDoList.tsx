@@ -26,7 +26,7 @@ export type PropsType = {
 
 export const ToDoList: React.FC<PropsType> = (props) => {
 
-    // Callback FN to remove todolist
+    // Callback Function to remove todolist
     const removeTodolistHandler = () => props.removeTodolist(props.id)
     // Functions to change the filter values:
     const onAllClickHandler = () => props.changeFilter(props.id, 'all')
