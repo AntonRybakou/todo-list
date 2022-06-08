@@ -1,4 +1,4 @@
-import {FilterValuesType, TodolistType} from '../App';
+import {FilterValuesType, TasksStateType, TodolistType} from '../App';
 import {v1} from "uuid";
 
 export type RemoveTodolistActionType = {
@@ -30,24 +30,25 @@ type ActionType =
     | ChangeTodolistTitleActionType
     | ChangeTodolistFilterActionType;
 
-export const todolistsReducer = (state: Array<TodolistType>, action: ActionType): Array<TodolistType> => {
+const initialState: Array<TodolistType> = [];
+
+export const todolistsReducer = (state: Array<TodolistType> = initialState, action: ActionType): Array<TodolistType> => {
     switch (action.type) {
         case 'REMOVE-TODOLIST':
             return state.filter(tl => tl.id !== action.id);
         case 'ADD-TODOLIST':
-            return [...state,
-                {
-                    id: action.todolistId,
-                    title: action.title,
-                    filter: "all"
-                }];
+            return [{
+                id: action.todolistId,
+                title: action.title,
+                filter: "all"
+            }, ...state];
         case 'CHANGE-TODOLIST-TITLE':
             return state.map(el => el.id === action.id ? {...el, title: action.title} : el)
         case 'CHANGE-TODOLIST-FILTER':
             return state.map(el => el.id === action.id ? {...el, filter: action.filter} : el)
 
         default:
-            throw new Error('I dont know such type of action')
+            return state;
     }
 }
 
