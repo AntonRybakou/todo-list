@@ -131,7 +131,7 @@ function AppWithRedux() {
                             default:
                                 tasksForToDoList = tasks[el.id];
                         }
-                        return <Grid item>
+                        return <Grid item key={el.id}>
                             <Paper style={{padding: "10px"}}>
                                 <ToDoList
                                     key={el.id}
