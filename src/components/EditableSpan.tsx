@@ -7,18 +7,25 @@ type EditableSpanPropsType = {
 
 export const EditableSpan: React.FC<EditableSpanPropsType> = (props) => {
     let [edit, setEdit] = React.useState(false);
-    let [newTitle, setNewtitle] = React.useState(props.title);
+    let [newTitle, setNewTitle] = React.useState(props.title);
+
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setNewtitle(e.target.value)
+        setNewTitle(e.target.value)
     }
+
     const onDoubleClickHandler = () => {
-        setEdit(!edit);
-        props.callBack(newTitle)
+        setEdit(true);
+        setNewTitle(props.title);
     }
+
+    const onBlurHandler = () => {
+        setEdit(false);
+        props.callBack(newTitle);
+    }
+
     const onKeyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
-            setEdit(!edit);
-            props.callBack(newTitle)
+            onBlurHandler()
         }
     }
 
@@ -27,7 +34,7 @@ export const EditableSpan: React.FC<EditableSpanPropsType> = (props) => {
             ? <input
                 value={newTitle}
                 onChange={onChangeHandler}
-                onBlur={onDoubleClickHandler}
+                onBlur={onBlurHandler}
                 onKeyDown={onKeyDownHandler}
                 autoFocus/>
             : <span onDoubleClick={onDoubleClickHandler}>{props.title}</span>

@@ -1,18 +1,16 @@
-import React, {useReducer} from 'react';
+import React from 'react';
 import './App.css';
-import {TaskType, ToDoList} from "./ToDoList";
+import {ToDoList} from "./ToDoList";
 import {FullInput} from "./components/FullInput";
-import {v1} from "uuid";
 import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@mui/material";
 import {Menu} from "@mui/icons-material";
 import {
     addTodolistAC,
     changeTodolistFilterAC,
     changeTodolistTitleAC,
-    removeTodolistAC,
-    todolistsReducer
+    removeTodolistAC
 } from "./state/todolists-reducer";
-import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from "./state/tasks-reducer";
+import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "./state/tasks-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./state/store";
 import {TasksStateType, TodolistType} from "./App";
@@ -21,31 +19,6 @@ import {TasksStateType, TodolistType} from "./App";
 export type FilterValuesType = "all" | "completed" | "active";
 
 function AppWithRedux() {
-    // v1() function to make ID for the first two ToDoList
-    let todolistID1 = v1();
-    let todolistID2 = v1();
-    // // Global state (data with an initial list of ToDoList)
-    // let [todolists, dispatchToTodolist] = useReducer(todolistsReducer, [
-    //     {id: todolistID1, title: 'What to learn', filter: 'all'},
-    //     {id: todolistID2, title: 'What to buy', filter: 'all'},
-    // ])
-    // // Global state (data with an initial list of elements in ToDoList)
-    // let [tasks, dispatchToTasks] = useReducer(tasksReducer, {
-    //     [todolistID1]: [
-    //         {id: v1(), title: "HTML&CSS", isDone: true},
-    //         {id: v1(), title: "JS/TS", isDone: true},
-    //         {id: v1(), title: "ReactJS", isDone: false},
-    //         {id: v1(), title: "Rest API", isDone: false},
-    //         {id: v1(), title: "GraphQL", isDone: false},
-    //     ],
-    //     [todolistID2]: [
-    //         {id: v1(), title: "Milk", isDone: false},
-    //         {id: v1(), title: "Bread", isDone: false},
-    //         {id: v1(), title: "Eggs", isDone: false},
-    //         {id: v1(), title: "Apples", isDone: false},
-    //         {id: v1(), title: "Bananas", isDone: false},
-    //     ]
-    // });
 
     const todolists = useSelector<AppRootStateType, Array<TodolistType>>(state => state.todolists)
     const tasks = useSelector<AppRootStateType, TasksStateType>(state => state.tasks)

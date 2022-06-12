@@ -5,7 +5,7 @@ import {addTodolistAC, removeTodolistAC} from "./todolists-reducer";
 let startState: TasksStateType;
 
 beforeEach(() => {
-     startState = {
+    startState = {
         "todolistId1": [
             {id: "1", title: "CSS", isDone: false},
             {id: "2", title: "JS", isDone: true},
@@ -69,7 +69,7 @@ test('title of specified task should be changed', () => {
 });
 
 test('new property with new array should be added when new todolist is added', () => {
-   const action = addTodolistAC("new todolist");
+    const action = addTodolistAC("new todolist");
 
     const endState = tasksReducer(startState, action)
 

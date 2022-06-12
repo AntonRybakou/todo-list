@@ -26,23 +26,19 @@ export type PropsType = {
 
 export const ToDoList: React.FC<PropsType> = (props) => {
 
-    // Callback Function to remove todolist
+    // Function to remove todolist
     const removeTodolistHandler = () => props.removeTodolist(props.id)
     // Functions to change the filter values:
     const onAllClickHandler = () => props.changeFilter(props.id, 'all')
     const onActiveClickHandler = () => props.changeFilter(props.id, 'active')
     const onCompletedClickHandler = () => props.changeFilter(props.id, 'completed')
-    // CallBack Function to add new task using title from the input
+    // Function to add new task using title from the input
     const addTaskHandler = (newTitle: string) => {
         props.addTask(newTitle, props.id)
     }
-    // CallBack Function to edit a title of ToDoList
+    // Function to edit a title of ToDoList
     const editTodolistHandler = (newTitle: string) => {
         props.editTodolist(props.id, newTitle)
-    }
-    // CallBack Function to edit a task title
-    const editTaskHandler = (tID: string, newTitle: string) => {
-        props.editTask(props.id, tID, newTitle);
     }
 
     return (
@@ -62,6 +58,10 @@ export const ToDoList: React.FC<PropsType> = (props) => {
                                 let newIsDoneValue = e.currentTarget.checked;
                                 props.changeTaskStatus(t.id, newIsDoneValue, props.id);
                             }
+                            const onTitleChangeHandler = (newTitle: string) => {
+                                debugger
+                                props.editTask(props.id, t.id, newTitle);
+                            };
 
                             return <div key={t.id}
                                         className={t.isDone ? "is-done" : ""}>
@@ -72,7 +72,7 @@ export const ToDoList: React.FC<PropsType> = (props) => {
                                 />
 
                                 <EditableSpan title={t.title}
-                                              callBack={(newTitle) => editTaskHandler(t.id, newTitle)}/>
+                                              callBack={onTitleChangeHandler}/>
 
                                 <IconButton aria-label="delete"
                                             size="small"
@@ -96,7 +96,7 @@ export const ToDoList: React.FC<PropsType> = (props) => {
                 </Button>
                 <Button variant={props.filter === 'completed' ? 'outlined' : 'text'}
                         onClick={onCompletedClickHandler}
-                        color={'success'}>
+                        color={'secondary'}>
                     Completed
                 </Button>
             </div>
