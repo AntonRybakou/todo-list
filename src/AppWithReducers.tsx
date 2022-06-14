@@ -177,7 +177,7 @@ function AppWithReducers() {
                                     filter={el.filter}
                                     removeTodolist={removeTodolist}
                                     editTodolist={editTodolist}
-                                    editTask={editTask}
+                                    changeTaskTitle={editTask}
                                 />
                             </Paper>
                         </Grid>

@@ -6,15 +6,14 @@ type FullInputPropsType = {
     callBack: (newTitle: string) => void,
 }
 
-export const FullInput: React.FC<FullInputPropsType> = (props) => {
+export const FullInput: React.FC<FullInputPropsType> = React.memo((props) => {
 
     let [title, setTitle] = useState("")
     let [error, setError] = useState<string | null>(null)
 
     const addTask = () => {
-        let newTitle = title.trim();
-        if (newTitle !== "") {
-            props.callBack(newTitle);
+        if (title.trim() !== "") {
+            props.callBack(title.trim());
             setTitle("");
         } else {
             setError("Title is required");
@@ -48,4 +47,4 @@ export const FullInput: React.FC<FullInputPropsType> = (props) => {
             </IconButton>
         </div>
     );
-}
+})

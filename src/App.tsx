@@ -5,6 +5,7 @@ import {FullInput} from "./components/FullInput";
 import {v1} from "uuid";
 import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@mui/material";
 import {Menu} from "@mui/icons-material";
+import {changeTaskTitleAC} from "./state/tasks-reducer";
 
 
 export type FilterValuesType = "all" | "completed" | "active";
@@ -152,7 +153,7 @@ function App() {
                                     filter={el.filter}
                                     removeTodolist={removeTodolist}
                                     editTodolist={editTodolist}
-                                    editTask={editTask}
+                                    changeTaskTitle={editTask}
                                 />
                             </Paper>
                         </Grid>
