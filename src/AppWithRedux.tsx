@@ -113,8 +113,7 @@ function AppWithRedux() {
                                 />
                             </Paper>
                         </Grid>
-                    })
-                    }
+                    })}
                 </Grid>
             </Container>
         </div>

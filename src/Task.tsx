@@ -13,11 +13,17 @@ type TaskPropsType = {
 }
 
 export const Task: React.FC<TaskPropsType> = React.memo((props) => {
+
+    // Function to remove task from initial state by ID
     const onClickHandler = () => props.removeTask(props.task.id, props.todolistId)
+
+    // Function to change task status
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         let newIsDoneValue = e.currentTarget.checked;
         props.changeTaskStatus(props.task.id, newIsDoneValue, props.todolistId);
     }
+
+    // Function to change task title
     const onTitleChangeHandler = useCallback((newValue: string) => {
         props.changeTaskTitle(props.task.id, newValue, props.todolistId);
     }, [props.changeTaskTitle, props.todolistId, props.task.id]);
