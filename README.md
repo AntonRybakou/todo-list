@@ -4,11 +4,11 @@
 ![img.png](img.png)
 
 ### Using:
-1. TypeScript
-2. React
-3. Redux
-4. @mui
-5. storybook
+1. [TypeScript](https://www.typescriptlang.org/)
+2. [React](https://reactjs.org/)
+3. [Redux](https://redux.js.org/)
+4. [MUI](https://material-ui.com/)
+5. [Storybook](https://storybook.js.org/)
 
 ### Structure:
 ```mermaid
