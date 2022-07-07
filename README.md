@@ -13,7 +13,7 @@
 ### Structure:
 ```mermaid
   graph LR;
-    I(Index.tsx)-->A(AppWithRedux.tsx);
+    I(Index.tsx)-->A(App.tsx);
     A--function to add new ToDo-->C1(FullInput.tsx);
     A--data-->T(ToDoList.tsx);
     
