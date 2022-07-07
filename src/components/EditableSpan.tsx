@@ -5,12 +5,15 @@ type EditableSpanPropsType = {
     callBack: (newTitle: string) => void,
 }
 
-export const EditableSpan: React.FC<EditableSpanPropsType> = React.memo((props) => {
+export const EditableSpan: React.FC<EditableSpanPropsType> = React.memo(({
+                                                                             title,
+                                                                             callBack
+                                                                         }) => {
 
     // State for editing mode
     let [edit, setEdit] = React.useState(false);
     // State for title
-    let [newTitle, setNewTitle] = React.useState(props.title);
+    let [newTitle, setNewTitle] = React.useState(title);
 
     // Function to change title
     const onChangeHandler = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,14 +23,14 @@ export const EditableSpan: React.FC<EditableSpanPropsType> = React.memo((props) 
     // Function to enter edit mode on double click
     const onDoubleClickHandler = useCallback(() => {
         setEdit(true);
-        setNewTitle(props.title);
-    }, [props.title]);
+        setNewTitle(title);
+    }, [title]);
 
     // Function to exit edit mode and save new title (on blur)
     const onBlurHandler = useCallback(() => {
         setEdit(false);
-        props.callBack(newTitle);
-    }, [newTitle, props.callBack]);
+        callBack(newTitle);
+    }, [newTitle, callBack]);
 
     // Function to exit edit mode and save new title (on enter)
     const onKeyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -44,7 +47,7 @@ export const EditableSpan: React.FC<EditableSpanPropsType> = React.memo((props) 
                 onBlur={onBlurHandler}
                 onKeyDown={onKeyDownHandler}
                 autoFocus/>
-            : <span onDoubleClick={onDoubleClickHandler}>{props.title}</span>
+            : <span onDoubleClick={onDoubleClickHandler}>{title}</span>
 
     );
 })
