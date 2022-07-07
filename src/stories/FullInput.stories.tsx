@@ -7,7 +7,7 @@ export default {
     title: 'Todolist/FullInput',
     component: FullInput,
     argTypes: {
-        onClick: {
+        callBack: {
             description: 'Button inside form clicked'
         }
     },

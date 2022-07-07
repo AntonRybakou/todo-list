@@ -41,22 +41,18 @@ export const ToDoList: React.FC<PropsType> = React.memo(({
 
     // Function to remove todolist
     const removeTodolistHandler = () => removeTodolist(id)
-
     // Functions to change the filter values:
     const onAllClickHandler = useCallback(() => changeFilter(id, 'all'), [changeFilter, id])
     const onActiveClickHandler = useCallback(() => changeFilter(id, 'active'), [changeFilter, id])
     const onCompletedClickHandler = useCallback(() => changeFilter(id, 'completed'), [changeFilter, id])
-
     // Function to add new task using title from the input
     const addTaskHandler = useCallback((newTitle: string) => {
         addTask(newTitle, id)
     }, [addTask, id])
-
     // Function to edit a title of ToDoList
     const editTodolistHandler = (newTitle: string) => {
         editTodolist(id, newTitle)
     }
-
     // Filtering tasks by filter value
     let tasksForToDoList;
     switch (filter) {

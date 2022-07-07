@@ -37,13 +37,11 @@ export const Task: React.FC<TaskPropsType> = React.memo(({
             color="primary"
             onChange={onChangeHandler}
         />
-
         <EditableSpan title={task.title} callBack={onTitleChangeHandler}/>
         <IconButton onClick={onClickHandler}>
             <Delete/>
         </IconButton>
     </div>
-
 });
 
 export default Task;

@@ -6,24 +6,20 @@ export type FullInputPropsType = {
     callBack: (newTitle: string) => void,
 }
 
-export const FullInput: React.FC<FullInputPropsType> = React.memo((props) => {
-
+export const FullInput: React.FC<FullInputPropsType> = React.memo(({callBack}) => {
     let [title, setTitle] = useState("")
     let [error, setError] = useState<string | null>(null)
-
     const addTask = () => {
         if (title.trim() !== "") {
-            props.callBack(title.trim());
+            callBack(title.trim());
             setTitle("");
         } else {
             setError("Title is required");
         }
     }
-
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value)
     }
-
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         setError(null);
         if (e.key === 'Enter') {
@@ -41,7 +37,6 @@ export const FullInput: React.FC<FullInputPropsType> = React.memo((props) => {
                        label="Title"
                        helperText={error}
             />
-
             <IconButton color="primary" onClick={addTask}>
                 <AddBox/>
             </IconButton>
