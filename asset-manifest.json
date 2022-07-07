@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/toshaby.github.io/it-incubator-todolist-ts/static/css/main.7acaea2f.css",
-    "main.js": "/toshaby.github.io/it-incubator-todolist-ts/static/js/main.67afe4d0.js",
-    "index.html": "/toshaby.github.io/it-incubator-todolist-ts/index.html",
-    "main.7acaea2f.css.map": "/toshaby.github.io/it-incubator-todolist-ts/static/css/main.7acaea2f.css.map",
-    "main.67afe4d0.js.map": "/toshaby.github.io/it-incubator-todolist-ts/static/js/main.67afe4d0.js.map"
+    "main.css": "/toshaby.github.io/it-incubator-todo-list-ts/static/css/main.7acaea2f.css",
+    "main.js": "/toshaby.github.io/it-incubator-todo-list-ts/static/js/main.67afe4d0.js",
+    "index.html": "/toshaby.github.io/it-incubator-todo-list-ts/index.html",
+    "main.7acaea2f.css.map": "/toshaby.github.io/it-incubator-todo-list-ts/static/css/main.7acaea2f.css.map",
+    "main.67afe4d0.js.map": "/toshaby.github.io/it-incubator-todo-list-ts/static/js/main.67afe4d0.js.map"
   },
   "entrypoints": [
     "static/css/main.7acaea2f.css",
