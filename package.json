@@ -2,7 +2,7 @@
   "name": "it-incubator-todolist-ts",
   "version": "0.1.0",
   "private": true,
-  "homepage": "toshaby.github.io/it-incubator-todo-list-ts",
+  "homepage": "https://toshaby.github.io/it-incubator-todo-list-ts/",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
