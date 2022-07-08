@@ -2,8 +2,16 @@ import React, {useCallback} from 'react';
 import './App.css';
 import {TaskType, ToDoList} from "./ToDoList";
 import {FullInput} from "./components/FullInput";
-import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@mui/material";
-import {Menu} from "@mui/icons-material";
+// import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@mui/material";
+import {AppBar} from "@mui/material";
+import {Button} from "@mui/material";
+import {Container} from "@mui/material";
+import {Grid} from "@mui/material";
+// import {IconButton} from "@mui/material";
+import {Paper} from "@mui/material";
+import {Toolbar} from "@mui/material";
+// import {Typography} from "@mui/material";
+// import {Menu} from "@mui/icons-material";
 import {
     addTodolistAC,
     changeTodolistFilterAC,
@@ -74,12 +82,12 @@ function App() {
         <div className="App">
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton edge="start" color="inherit" aria-label="menu">
-                        <Menu/>
-                    </IconButton>
-                    <Typography variant="h6">
-                        News
-                    </Typography>
+                    {/*<IconButton edge="start" color="inherit" aria-label="menu">*/}
+                    {/*    <Menu/>*/}
+                    {/*</IconButton>*/}
+                    {/*<Typography variant="h6">*/}
+                    {/*    News*/}
+                    {/*</Typography>*/}
                     <Button color="inherit">Login</Button>
                 </Toolbar>
             </AppBar>
