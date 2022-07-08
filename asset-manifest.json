@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/ToshaBY.github.io/it-incubator-todo-list-ts/static/css/main.7acaea2f.css",
-    "main.js": "/ToshaBY.github.io/it-incubator-todo-list-ts/static/js/main.f80974fe.js",
-    "index.html": "/ToshaBY.github.io/it-incubator-todo-list-ts/index.html",
-    "main.7acaea2f.css.map": "/ToshaBY.github.io/it-incubator-todo-list-ts/static/css/main.7acaea2f.css.map",
-    "main.f80974fe.js.map": "/ToshaBY.github.io/it-incubator-todo-list-ts/static/js/main.f80974fe.js.map"
+    "main.css": "/it-incubator-todo-list-ts/static/css/main.7acaea2f.css",
+    "main.js": "/it-incubator-todo-list-ts/static/js/main.f80974fe.js",
+    "index.html": "/it-incubator-todo-list-ts/index.html",
+    "main.7acaea2f.css.map": "/it-incubator-todo-list-ts/static/css/main.7acaea2f.css.map",
+    "main.f80974fe.js.map": "/it-incubator-todo-list-ts/static/js/main.f80974fe.js.map"
   },
   "entrypoints": [
     "static/css/main.7acaea2f.css",
